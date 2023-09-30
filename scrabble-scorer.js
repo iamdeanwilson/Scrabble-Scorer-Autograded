@@ -30,8 +30,16 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   word = input.question("Let's play some scrabble! \n\nEnter a word to score: ");
-   return word;
+  let alphabet = " abcdefghijklmnopqrstuvwxyz";
+  word = input.question("Let's play some scrabble! \n\nEnter a word to score: ");
+  word = word.toLowerCase(); 
+  for (let i=0 ; i < word.length ; i++){
+    if (alphabet.indexOf(word[i]) === -1){
+    console.log('Invalid Entry. Only letters are allowed.')
+    return initialPrompt();
+    }
+  } 
+  return word
 };
 
 
@@ -118,6 +126,7 @@ function transform(oldPointStructure) {
  };
 
 let newPointStructure = transform(oldPointStructure)
+newPointStructure[' '] = 0;
 
 function runProgram() {
    initialPrompt();
